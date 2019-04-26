@@ -1,0 +1,7 @@
+
+[info 2019/04/26 10:15:56.007 EDT <main> tid=0x1] Log opened with new distributed system connection.  View[10.255.204.107(jump-proud-beta:13649:locator)<ec><v0>:41000|0] members: [10.255.204.107(jump-proud-beta:13649:locator)<ec><v0>:41000]
+
+[info 2019/04/26 10:16:09.859 EDT <DM-MemberEventInvoker> tid=0x17] A new member joined: 10.255.204.107(pass-rich-theta:13676)<v1>:41001.  View[10.255.204.107(jump-proud-beta:13649:locator)<ec><v0>:41000|1] members: [10.255.204.107(jump-proud-beta:13649:locator)<ec><v0>:41000, 10.255.204.107(pass-rich-theta:13676)<v1>:41001{lead}]
+
+[info 2019/04/26 10:16:15.974 EDT <P2P message reader for 10.255.204.107(pass-rich-theta:13676)<v1>:41001 shared ordered uid=2 port=58285> tid=0x69] server count: 1 connected client count: 1 client subscription queue count: 1
+  current servers : 10.255.204.107(pass-rich-theta:13676)<v1>:41001 

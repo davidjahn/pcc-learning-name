@@ -1,6 +1,5 @@
 package io.pivotal.pcc.example.demo.service;
 
-import io.pivotal.pcc.example.demo.domain.HelloWorldModel;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
