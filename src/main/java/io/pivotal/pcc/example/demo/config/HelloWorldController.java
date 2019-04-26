@@ -15,7 +15,7 @@ public class HelloWorldController {
 
   @RequestMapping("/hello")
   public String sayHello(){
-    logger.info("received request");
+    logger.info("**Received request**");
     HelloWorldService helloWorldService = new HelloWorldService();
 
     return helloWorldService.sayHelloWorld(helloWorldModel.toString());
