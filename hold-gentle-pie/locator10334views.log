@@ -1,0 +1,7 @@
+
+[info 2019/05/01 07:56:13.305 PDT <main> tid=0x1] Log opened with new distributed system connection.  View[10.118.19.45(hold-gentle-pie:74981:locator)<ec><v0>:41000|0] members: [10.118.19.45(hold-gentle-pie:74981:locator)<ec><v0>:41000]
+
+[info 2019/05/01 07:56:43.582 PDT <DM-MemberEventInvoker> tid=0x17] A new member joined: 10.118.19.45(sing-relieved-beta:75052)<v1>:41001.  View[10.118.19.45(hold-gentle-pie:74981:locator)<ec><v0>:41000|1] members: [10.118.19.45(hold-gentle-pie:74981:locator)<ec><v0>:41000, 10.118.19.45(sing-relieved-beta:75052)<v1>:41001{lead}]
+
+[info 2019/05/01 07:57:39.544 PDT <P2P message reader for 10.118.19.45(sing-relieved-beta:75052)<v1>:41001 shared ordered uid=2 port=59955> tid=0x69] server count: 1 connected client count: 0 client subscription queue count: 0
+  current servers : 10.118.19.45(sing-relieved-beta:75052)<v1>:41001 
