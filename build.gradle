@@ -12,7 +12,7 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 // Dont include the log4j-to-slf4j bridge as that conflicts with
-// Geode's
+// Geode's log4j
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
@@ -24,7 +24,6 @@ configurations {
 
 repositories {
     mavenCentral()
-    maven { url = "https://repo.spring.io/libs-milestone" }
     maven { url = "https://repo.spring.io/libs-snapshot" }
 }
 
@@ -38,8 +37,6 @@ dependencies {
     }
     implementation('javax.cache:cache-api:1.0.0')
     implementation ('org.springframework.boot:spring-boot-starter-web')
-//    compileOnly 'org.projectlombok:lombok'
-//    annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
 }

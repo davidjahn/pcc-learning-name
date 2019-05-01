@@ -21,4 +21,11 @@ public class HelloWorldController {
     return helloWorldService.sayHelloWorld(helloWorldModel.toString());
   }
 
+  @RequestMapping("/")
+  public String ping(){
+    logger.info("**Received request**");
+
+    return "<h1>Pong<h1>";
+  }
+
 }

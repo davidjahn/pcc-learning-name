@@ -8,9 +8,14 @@ Run with `./gradlew build` to compile the application.
 
 ## How to run
 
+#### On Pivotal Cloud Foundry (PCF)
 This application can be `cf push`ed with the `manifest.yaml` present in the root directory.
 
-Once the application is `cf push`ed you can access the URL `/hello` to view the simple output. 
+Once the application is `cf push`ed you can access the URL `/hello` to view the simple output.
+
+#### On local environment
+Please start a local Geode cluster using `gfsh` CLI tool. Once you have at min one locator and 
+server running, you can run the application locally using `./gradlew bootRun`  
 
 ## How the application works
 
@@ -21,11 +26,13 @@ Few annotation to notice
 - `@SpringBootApplication` - This will help developer not to make any more configuration that 
 might be required to run this application as a jar on the container
 
-- `@Cachable` - This annotation helps developer indicate that the method `sayHelloWorld()` 
+- `@Cacheable` - This annotation helps developer indicate that the method `sayHelloWorld()` 
 will be cached with the name specified on the annotation.
 
 - `@Service` - This annotation on class `HelloWorldService` makes the class condidate for spring 
 component scanning
+
+#### PCC Specific Annotations 
 
 - `@EnableClusterConfiguration(useHttp = true)` - This annotation indicates that the configuration 
 that will be created in a PCC cluster would be saved using `ClusterConfigurationService`, a concept 
