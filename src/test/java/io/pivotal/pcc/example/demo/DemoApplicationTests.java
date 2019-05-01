@@ -9,6 +9,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+
 @RunWith(SpringRunner.class)
 @WebMvcTest(HelloWorldService.class)
 public class DemoApplicationTests {
@@ -26,13 +27,12 @@ public class DemoApplicationTests {
 
   @Test
   public void sayHello(){
-//    HelloWorldModel helloWorldModel = new HelloWorldModel();
-//    Mockito.when(service.sayHelloWorld(helloWorldModel)).thenReturn("Hello World");
+//    Mockito.when(service.sayHelloWorld("Hello World")).thenReturn("Hello World");
 //    try {
-//      mvc.perform(get("/hello")
+//      mvc.perform(MockMvcRequestBuilders.get("/hello")
 //      .accept(MediaType.ALL)).
-//          andExpect(status().isOk()).
-//          andExpect(content().string("Hello"));
+//          andExpect(MockMvcResultMatchers.status().isOk()).
+//          andExpect(MockMvcResultMatchers.content().string(ArgumentMatchers.contains("Hello World")));
 //    } catch (Exception e) {
 //      e.printStackTrace();
 //    }
