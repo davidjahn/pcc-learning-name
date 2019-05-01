@@ -44,4 +44,6 @@ is analogus to `Map`), will be created based on Spring Caching abstraction.
 
 - `@Region` - This annotation is used to define the object which will be pushed into the `Region` in 
 PCC.
+
+- `@EnableGemFireCaching` - Chooses PCC/GemFire as a Caching Provider. 
   
