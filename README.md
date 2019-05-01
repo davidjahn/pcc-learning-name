@@ -8,6 +8,13 @@ Run with `./gradlew build` to compile the application.
 
 ## How to run
 
+This is a Spring Boot application which has 2 REST endpoints
+
+1. `/` - landing page url. Just returns Ping.
+2. `/hello` - Hits a service which returns a `Hello World` string with current timestanp. 
+The return value is cached in the PCC cluster. Next time when you hit this URL you will notice
+the timestamp is not updated, as it is picked from the cache rather than from the service.
+
 #### On Pivotal Cloud Foundry (PCF)
 This application can be `cf push`ed with the `manifest.yaml` present in the root directory.
 
@@ -16,6 +23,8 @@ Once the application is `cf push`ed you can access the URL `/hello` to view the 
 #### On local environment
 Please start a local Geode cluster using `gfsh` CLI tool. Once you have at min one locator and 
 server running, you can run the application locally using `./gradlew bootRun`  
+
+
 
 ## How the application works
 
@@ -41,9 +50,5 @@ configurations needed from this application to PCC cluster.
 
 - `@EnableCachingDefinedRegions` - This annotation will ensure that `Region`( a concept in PCC which 
 is analogus to `Map`), will be created based on Spring Caching abstraction.
-
-- `@Region` - This annotation is used to define the object which will be pushed into the `Region` in 
-PCC.
-
-- `@EnableGemFireCaching` - Chooses PCC/GemFire as a Caching Provider. 
+ 
   
