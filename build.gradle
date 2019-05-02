@@ -24,7 +24,7 @@ plugins {
 apply plugin: 'io.spring.dependency-management'
 
 group = 'io.pivotal.pcc.example'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0-M1'
 sourceCompatibility = '1.8'
 
 repositories {
