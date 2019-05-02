@@ -28,8 +28,13 @@ public class HelloWorldController {
 
   private static Logger logger = LogManager.getLogger(HelloWorldController.class);
 
+  private final HelloWorldService helloWorldService;
+
   @Autowired
-  HelloWorldService helloWorldService;
+  public HelloWorldController(
+      HelloWorldService helloWorldService) {
+    this.helloWorldService = helloWorldService;
+  }
 
   @RequestMapping("/hello")
   public String sayHello(){
