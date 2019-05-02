@@ -56,6 +56,8 @@ is analogus to `Map`), will be created based on Spring Caching abstraction.
 For further reference, please consider the following sections:
 
 * [Official Gradle documentation](https://docs.gradle.org)
+* [Official Pivotal Cloud Cache documentation](https://docs.pivotal.io/p-cloud-cache/1-7/app-development.html)
+* [Official Spring Boot Data Geode documentation](https://docs.spring.io/autorepo/docs/spring-boot-data-geode-build/1.0.0.BUILD-SNAPSHOT/reference/htmlsingle/#geode-autoconfiguration-annotations-extension-caching)
 
 ### Guides
 The following guides illustrate how to use some features concretely:
@@ -69,4 +71,5 @@ The following guides illustrate how to use some features concretely:
 These additional references should also help you:
 
 * [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
+* [Pivotal GemFire - details of Cluster Configuration](http://gemfire.docs.pivotal.io/98/geode/configuring/cluster_config/gfsh_persist.html)
 
