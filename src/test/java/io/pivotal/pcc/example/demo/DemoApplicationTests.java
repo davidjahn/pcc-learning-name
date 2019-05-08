@@ -41,17 +41,4 @@ public class DemoApplicationTests {
 
   }
 
-  @Test
-  public void sayHello(){
-//    Mockito.when(service.sayHelloWorld("Hello World")).thenReturn("Hello World");
-//    try {
-//      mvc.perform(MockMvcRequestBuilders.get("/hello")
-//      .accept(MediaType.ALL)).
-//          andExpect(MockMvcResultMatchers.status().isOk()).
-//          andExpect(MockMvcResultMatchers.content().string(ArgumentMatchers.contains("Hello World")));
-//    } catch (Exception e) {
-//      e.printStackTrace();
-//    }
-  }
-
 }
