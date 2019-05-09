@@ -18,6 +18,22 @@ the timestamp is not updated, as it is picked from the cache rather than from th
 #### On Pivotal Cloud Foundry (PCF)
 This application can be `cf push`ed with the `manifest.yaml` present in the root directory.
 
+You have 2 options
+
+1. Refer the service name in the `manifest.yaml` file
+e.g.
+
+```
+    services:
+       - small1
+```
+
+Or
+
+1. `cf push --no-start` to push the app without starting
+2. `cf bs hello-world-pcc <service instance name>` to bind the service to app
+3. `cf restage hello-world-pcc` to start with service
+
 Once the application is `cf push`ed you can access the URL `/hello` to view the simple output.
 
 #### On local environment
