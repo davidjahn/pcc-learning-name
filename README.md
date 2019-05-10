@@ -5,4 +5,4 @@ refer to indiviual README in the projects.
 
 ## List of Applications
 - PCC as a Caching provider for Spring Data using `@Cacheable` annotation 
-[PCC Hello World](./pcc-hello-world-example/README.md)
+[PCC Hello World](./pcc-hello-world-example)
