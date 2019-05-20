@@ -39,7 +39,7 @@ public class HelloWorldController {
   @RequestMapping("/hello")
   public String sayHello(){
     logger.info("**Received request**");
-    return helloWorldService.sayHelloWorld("HelloWorld");
+    return "Key: HelloWorld cached with value: " + helloWorldService.sayHelloWorld("HelloWorld");
   }
 
   @RequestMapping("/")

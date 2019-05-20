@@ -10,10 +10,13 @@ Run with `./gradlew build` to compile the application.
 
 This is a Spring Boot application which has 2 REST endpoints
 
-1. `/` - landing page url. Just returns Ping.
-2. `/hello` - Hits a service which returns a `Hello World` string with current timestanp. 
-The return value is cached in the PCC cluster. Next time when you hit this URL you will notice
-the timestamp is not updated, as it is picked from the cache rather than from the service.
+1. `/` - landing page url. Returns the string `Pong`.
+2. `/hello` - Hits a service which retrieves the `HelloWorld` key with
+its value, a timestamp. If the `HelloWorld` key has not yet been cached
+(a cache miss),
+the current time is obtained to be used as the value.
+The key/value pair is placed into the cache.
+And, subsequent uses of this endpoint return the cached value.
 
 #### On Pivotal Cloud Foundry (PCF)
 This application can be `cf push`ed with the `manifest.yaml` present in the root directory.

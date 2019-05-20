@@ -29,6 +29,6 @@ public class HelloWorldService {
   @Cacheable("HelloWorld")
   public String sayHelloWorld(String helloString){
     logger.info("************Hitting the service");
-    return "Hello" + helloString + System.nanoTime();
+    return Long.toString(System.nanoTime());
   }
 }
