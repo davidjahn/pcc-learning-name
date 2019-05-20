@@ -19,11 +19,11 @@ The key/value pair is placed into the cache.
 And, subsequent uses of this endpoint return the cached value.
 
 #### On Pivotal Cloud Foundry (PCF)
-This application can be `cf push`ed with the `manifest.yaml` present in the root directory.
+This application can be `cf push`ed with the `manifest.yml` present in the root directory.
 
 You have 2 options
 
-1. Refer the service name in the `manifest.yaml` file
+1. Refer the service name in the `manifest.yml` file
 e.g.
 
 ```
