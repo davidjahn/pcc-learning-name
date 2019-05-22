@@ -1,6 +1,12 @@
 # pcc-hello-world-example
-Sample "Hello World" Spring Boot application to work with Pivotal Cloud Cache(PCC)
 
+This example Spring Boot _Hello, World_ app introduces aspects of the
+look-aside cache pattern as it caches a single key/value entry.
+The app works with Pivotal Cloud Cache (PCC) or with Apache Geode
+as a caching service.
+
+See the PCC documentation on [The Look-Aside Cache](https://docs.pivotal.io/p-cloud-cache/design-patterns.html#lookaside-cache)
+for a description of a look-aside cache.
 
 ## Build the App
 
@@ -13,14 +19,15 @@ $ ./gradlew build
 
 ## Run the App
 
-There are two options for running the app: locally and with PCC in
-a PCF environment.
+There are two options for running the app:
+locally with Apache Geode,
+and with PCC in a Pivotal Cloud Foundry (PCF) environment.
 
 #### Run the App Locally with Apache Geode
 
 To run the app locally, follow these steps:
 
-1. Acquire and build or install Apache Geode (https://geode.apache.org/)
+1. Acquire and build or install [Apache Geode](https://geode.apache.org/)
 in order to use gfsh.
 
 2. Run gfsh.
@@ -58,13 +65,11 @@ To shut down the Geode cluster, run the gfsh command:
     gfsh>shutdown --include-locators=true
     ```
 
-#### On Pivotal Cloud Foundry (PCF)
+#### On PCF
 
-This application can be `cf push`ed with the `manifest.yml` present in the root directory.
+There are two options for running the app within the PCF environment.
 
-There are have two options for running the app within the PCF environment.
-
-**Modify the Manifest and Do a `cf push`**
+**Option 1 to Run on PCF: Modify the Manifest and Do a `cf push`**
 
 1. Append your PCC service name to the `manifest.yml` file,
 replacing `PCC-SERVICE-NAME` with the name of your PCC service instance,
@@ -81,12 +86,29 @@ such that the `manifest.yml` file contains:
 
 2. `cf push`, and note the app URL.
 
-**`cf push`, Bind, and Restage the APP**
+**Option 2 to Run on PCF: `cf push`, Bind, and Start the App**
 
-1. `cf push --no-start` to push the app without starting,
-and note the app URL.
-2. `cf bs hello-world-pcc <service instance name>` to bind the service to app
-3. `cf restage hello-world-pcc` to start with service
+Use the cf CLI to push and run the app.
+
+1. To push the app using the manifest,
+but not start the app:
+
+    ```
+    $ cf push --no-start
+    ```
+    Note the app URL.
+
+2. Bind the app to the service,
+replacing `PCC-SERVICE-NAME` with the name of your PCC service instance:
+
+    ```
+    $ cf bind-service hello-world-pcc PCC-SERVICE-NAME
+    ```
+3. Start the app:
+
+    ```
+    $ cf start hello-world-pcc
+    ```
 
 Once the application is running, 
 in a web browser, enter either of the two REST endpoints,
@@ -98,55 +120,60 @@ replacing `APP-URL` with your app's URL.
 where `XXXX` will be replaced by the system time when the key/value
 pair was cached. 
 
-## Explanation of REST Endpoints
+## The App's Two REST Endpoints
 
-This is a Spring Boot application which has 2 REST endpoints
+This is Spring Boot app has two REST endpoints:
 
-1. `/` - landing page url. Returns the string `Pong`.
-2. `/hello` - Hits a service which retrieves the `HelloWorld` key with
-its value, a timestamp. If the `HelloWorld` key has not yet been cached
-(a cache miss),
-the current time is obtained to be used as the value.
+- `/` - Pings the app. Returns the string `Pong`.
+- `/hello` - Asks the caching service for the `HelloWorld` key,
+to get the value associated with the key.
+The value is a timestamp.
+If the `HelloWorld` key has not yet been cached (a cache miss),
+the current time is calculated to be used as the value.
 The key/value pair is placed into the cache.
-And, subsequent uses of this endpoint return the cached value.
+And, subsequent uses of this endpoint returns the cached value.
 
+## Annotations
 
+Spring Boot implements annotations that make the implementation of
+the look-aside cache easy.
+Here are brief descriptions of some of these annotations:
 
-## How the application works
+- `@SpringBootApplication` - Helps the developer not make more configuration
+than might be required to run this application as a JAR in the container.
 
-Spring Boot helps us create most of bits necessary to run this application with a 
-Pivotal Cloud Cache(PCC) cluster.
-Few annotation to notice
+- `@Cacheable` - Helps the developer indicate that the return value
+from the `sayHelloWorld()` method  
+will be cached with the name specified in the annotation.
 
-- `@SpringBootApplication` - This will help developer not to make any more configuration that 
-might be required to run this application as a jar on the container
+- `@Service` - This annotation on class `HelloWorldService` makes
+the class a candidate for Spring component scanning.
 
-- `@Cacheable` - This annotation helps developer indicate that the method `sayHelloWorld()` 
-will be cached with the name specified on the annotation.
+#### PCC-Specific Annotations 
 
-- `@Service` - This annotation on class `HelloWorldService` makes the class condidate for spring 
-component scanning
+- `@EnableClusterConfiguration(useHttp = true)` - This annotation indicates
+that the configuration that will be created in the caching service
+will be saved using `ClusterConfigurationService`,
+a concept in Apache Geode and in PCC.
+It uses the HTTP protocol to send the 
+configurations needed from this application to the caching service
+(Apache Geode or PCC).
 
-#### PCC Specific Annotations 
-
-- `@EnableClusterConfiguration(useHttp = true)` - This annotation indicates that the configuration 
-that will be created in a PCC cluster would be saved using `ClusterConfigurationService`, a concept 
-in PCC. We dont need to dig into it more here, but it will use http protocol to send the 
-configurations needed from this application to PCC cluster.
-
-- `@EnableCachingDefinedRegions` - This annotation will ensure that `Region`( a concept in PCC which 
-is analogus to `Map`), will be created based on Spring Caching abstraction.
+- `@EnableCachingDefinedRegions` - This annotation ensures that
+the Apache Geode or PCC cluster _region_,
+a logical organization of data which is analogus to a map,
+will be created based on the Spring caching abstraction.
  
   
 ### Reference Documentation
-For further reference, please consider the following sections:
+For further reference, please consider the following documentation:
 
 * [Official Gradle documentation](https://docs.gradle.org)
 * [Official Pivotal Cloud Cache documentation](https://docs.pivotal.io/p-cloud-cache/1-7/app-development.html)
 * [Official Spring Boot Data Geode documentation](https://docs.spring.io/autorepo/docs/spring-boot-data-geode-build/1.0.0.BUILD-SNAPSHOT/reference/htmlsingle/#geode-autoconfiguration-annotations-extension-caching)
 
 ### Guides
-The following guides illustrate how to use some features concretely:
+The following guides illustrate how to use some features:
 
 * [Caching Data with Spring](https://spring.io/guides/gs/caching/)
 * [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
