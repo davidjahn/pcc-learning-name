@@ -58,7 +58,7 @@ run the app:
     where `XXXX` will be replaced by the system time when the key/value
     pair was cached. 
 
-6. Use a control-C to stop the app when finished.
+6. Use control-C to stop the app when finished.
 To shut down the Geode cluster, run the gfsh command:
 
     ```
@@ -122,7 +122,7 @@ pair was cached.
 
 ## The App's Two REST Endpoints
 
-This is Spring Boot app has two REST endpoints:
+This Spring Boot app has two REST endpoints:
 
 - `/` - Pings the app. Returns the string `Pong`.
 - `/hello` - Asks the caching service for the `HelloWorld` key,
@@ -135,12 +135,12 @@ And, subsequent uses of this endpoint returns the cached value.
 
 ## Annotations
 
-Spring Boot implements annotations that make the implementation of
-the look-aside cache easy.
+Spring Boot implements annotations that make 
+it easy to implement the look-aside cache.
 Here are brief descriptions of some of these annotations:
 
-- `@SpringBootApplication` - Helps the developer not make more configuration
-than might be required to run this application as a JAR in the container.
+- `@SpringBootApplication` - Helps the developer to avoid configuring
+more than is required to run this application as a JAR in the container.
 
 - `@Cacheable` - Helps the developer indicate that the return value
 from the `sayHelloWorld()` method  
