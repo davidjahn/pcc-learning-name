@@ -18,12 +18,33 @@ package io.pivotal.pcc.example.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+import org.springframework.data.gemfire.config.annotation.CacheServerApplication;
+import org.springframework.data.gemfire.config.annotation.ClientCacheApplication;
+import org.springframework.data.gemfire.config.annotation.EnableLocator;
+import org.springframework.data.gemfire.config.annotation.EnableManager;
 
 @SpringBootApplication
+
+/** This annotation is only used for "local" profile for dev testing **/
+@CacheServerApplication(name = "SampleApp")
 public class DemoApplication {
 
   public static void main(String[] args) {
     SpringApplication.run(DemoApplication.class, args);
   }
+
+
+  /**
+   * "local" profile to spin up Apache Geode cluster without gfsh CLI
+   *
+   * @see <a href="http://docs.spring.io/autorepo/docs/spring-boot-data-geode-build/1.1.0.BUILD-SNAPSHOT/reference/html5/#geode-cluster-configuration-bootstrapping" >docs</a>
+   */
+  @Configuration
+  @EnableLocator
+  @EnableManager(start = true)
+  @Profile("local")
+  static class ClusteredCluster{ }
 
 }

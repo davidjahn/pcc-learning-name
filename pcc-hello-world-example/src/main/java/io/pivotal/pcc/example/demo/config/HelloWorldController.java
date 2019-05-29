@@ -39,13 +39,12 @@ public class HelloWorldController {
   @RequestMapping("/hello")
   public String sayHello(){
     logger.info("**Received request**");
-    return "Key: HelloWorld cached with value: " + helloWorldService.sayHelloWorld("HelloWorld");
+    return "<h2>Key: \"HelloWorld\" cached with value: " + helloWorldService.sayHelloWorld("HelloWorld") + "</h2>";
   }
 
   @RequestMapping("/")
   public String ping(){
     logger.info("**Received request**");
-
     return "<h1>Pong<h1>";
   }
 

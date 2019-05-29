@@ -30,18 +30,29 @@ sourceCompatibility = '1.8'
 repositories {
     mavenCentral()
     maven { url = "https://repo.spring.io/libs-snapshot" }
+    maven { url = "https://repo.spring.io/plugins-snapshot" }
 }
 
 dependencies {
-    implementation('org.springframework.geode:spring-geode-starter:1.0.0.RELEASE'){
+    implementation('org.springframework.geode:spring-gemfire-starter:1.0.1.BUILD-SNAPSHOT'){
         constraints{
-            implementation('org.apache.geode:geode-core:1.8.0'){
-                because "We need to test with the latest geode version"
+            implementation('io.pivotal.gemfire:geode-core:9.7.1') {
+                because "Matches PCC 1.7.0 version of GemFire"
+            }
+            implementation('io.pivotal.gemfire:geode-cq:9.7.1') {
+                because "Matches PCC 1.7.0 version of GemFire"
+            }
+            implementation('io.pivotal.gemfire:geode-lucene:9.7.1') {
+                because "Matches PCC 1.7.0 version of GemFire"
             }
         }
     }
     implementation('javax.cache:cache-api:1.0.0')
     implementation ('org.springframework.boot:spring-boot-starter-web')
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation ('org.springframework.boot:spring-boot-starter-test'){
+        constraints{
+            exclude group: "org.apache.logging.log4j", module: "log4j-to-slf4j"
+        }
+    }
     testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
 }
