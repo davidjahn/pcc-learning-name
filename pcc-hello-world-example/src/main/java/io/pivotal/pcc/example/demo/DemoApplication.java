@@ -22,6 +22,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.gemfire.config.annotation.CacheServerApplication;
 import org.springframework.data.gemfire.config.annotation.ClientCacheApplication;
+import org.springframework.data.gemfire.config.annotation.EnableCacheServer;
 import org.springframework.data.gemfire.config.annotation.EnableLocator;
 import org.springframework.data.gemfire.config.annotation.EnableManager;
 
@@ -45,6 +46,6 @@ public class DemoApplication {
   @EnableLocator
   @EnableManager(start = true)
   @Profile("local")
-  static class ClusteredCluster{ }
+  static class ClusteredLocator{ }
 
 }
