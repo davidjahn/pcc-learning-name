@@ -24,28 +24,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class HelloWorldController {
+public class BackEndController {
 
-  private static Logger logger = LogManager.getLogger(HelloWorldController.class);
+  private static Logger logger = LogManager.getLogger(BackEndController.class);
 
   private final HelloWorldService helloWorldService;
 
   @Autowired
-  public HelloWorldController(
+  public BackEndController(
       HelloWorldService helloWorldService) {
     this.helloWorldService = helloWorldService;
   }
 
-  @RequestMapping("/hello")
+  @RequestMapping("/v0/users")
   public String sayHello(){
     logger.info("**Received request**");
-    return "<h2>Key: \"HelloWorld\" cached with value: " + helloWorldService.sayHelloWorld("HelloWorld") + "</h2>";
-  }
-
-  @RequestMapping("/")
-  public String ping(){
-    logger.info("**Received request**");
-    return "<h1>Pong<h1>";
+    return "{}";
   }
 
 }

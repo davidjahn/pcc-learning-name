@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <form onSubmit="return false">
+        <div>
+            Please Enter Name:
+            <input type="text" />
+            <input type="submit" value="login"/>
+            <p>Your session ID in gemfire is:</p>
+            <p th:text="${#httpSession.id}"/>
+        </div>
+    </form>
+</body>
+
+<script>
+    console.log("yay!! javascript!!")
+    fetch("http://localhost:8080/v0/users").then(function(myJson) {
+        console.log(JSON.stringify(myJson));
+    })
+</script>
+</html>
