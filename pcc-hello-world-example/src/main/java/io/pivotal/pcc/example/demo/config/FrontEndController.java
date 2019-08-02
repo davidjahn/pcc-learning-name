@@ -40,7 +40,7 @@ public class FrontEndController {
     this.helloWorldService = helloWorldService;
   }
 
-  @CrossOrigin(origins = "*", allowedHeaders = "*")
+  @CrossOrigin
   @GetMapping("/")
   public String ping(Model model, HttpSession httpSession){
     if ((httpSession.getAttribute("name")) !=null || httpSession.getAttribute("message") != null){
