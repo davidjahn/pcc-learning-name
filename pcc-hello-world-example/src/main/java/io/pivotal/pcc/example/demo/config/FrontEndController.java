@@ -22,6 +22,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpSession;
@@ -39,6 +40,7 @@ public class FrontEndController {
     this.helloWorldService = helloWorldService;
   }
 
+  @CrossOrigin(origins = "*", allowedHeaders = "*")
   @GetMapping("/")
   public String ping(Model model, HttpSession httpSession){
     if ((httpSession.getAttribute("name")) !=null || httpSession.getAttribute("message") != null){
