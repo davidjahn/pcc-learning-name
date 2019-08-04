@@ -17,8 +17,15 @@
 </body>
 
 <script>
+    const get_ = (uri) => {
+        console.debug("get", uri)
+        return fetch(uri, {
+            credentials: 'include',
+        })
+    }
+
     console.log("yay!! javascript!!")
-    fetch("http://localhost:8080/v0/users").then(function(myJson) {
+    get_("http://localhost:8080/v0/users").then(function(myJson) {
         console.log(JSON.stringify(myJson));
     })
 </script>
