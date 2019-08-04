@@ -20,6 +20,7 @@ import io.pivotal.pcc.example.demo.service.HelloWorldService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,6 +37,7 @@ public class BackEndController {
     this.helloWorldService = helloWorldService;
   }
 
+  @CrossOrigin
   @RequestMapping("/v0/users")
   public String sayHello(){
     logger.info("**Received request**");
