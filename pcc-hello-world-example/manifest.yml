@@ -3,3 +3,5 @@ applications:
   - name: pcc-learning-name
     path: ./build/libs/demo-1.0.0-M1.jar
     services: [name-cluster]
+    env:
+      HOME_SERVICE: https://home.apps.pcfone.io

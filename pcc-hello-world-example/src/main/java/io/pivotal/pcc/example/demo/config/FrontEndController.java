@@ -40,8 +40,8 @@ public class FrontEndController {
     this.helloWorldService = helloWorldService;
   }
 
-  @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
   @GetMapping("/")
+  @CrossOrigin
   public String ping(Model model, HttpSession httpSession){
     if ((httpSession.getAttribute("name")) !=null || httpSession.getAttribute("message") != null){
       model.addAttribute("username", "david");
