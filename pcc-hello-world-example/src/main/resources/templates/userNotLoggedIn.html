@@ -16,16 +16,9 @@
     </form>
 </body>
 
-<script>
-    const get_ = (uri) => {
-        console.debug("get", uri)
-        return fetch(uri, {
-            credentials: 'include',
-        })
-    }
-
-    console.log("yay!! javascript!!")
-    get_("v0/users").then(function(myJson) {
+<script type="module">
+    import {Network} from 'https://cdn.apps.pcfone.io/network.js'
+    Network.get("v0/users").then(function(myJson) {
         console.log(JSON.stringify(myJson));
     })
 </script>
