@@ -1,6 +1,6 @@
 ---
 applications:
-  - name: pcc-learning-name
+  - name: name
     path: ./build/libs/demo-1.0.0-M1.jar
     services: [name-cluster]
     env:
