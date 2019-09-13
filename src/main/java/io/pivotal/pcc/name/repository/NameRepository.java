@@ -14,26 +14,16 @@
  * the specific language governing permissions and limitations under the License.
  */
 
-package io.pivotal.pcc.name;
+package io.pivotal.pcc.name.repository;
 
-import io.pivotal.pcc.example.demo.service.HelloWorldService;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.context.annotation.Profile;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+import io.pivotal.pcc.name.model.Name;
 
-
-@RunWith(SpringRunner.class)
-@WebMvcTest(HelloWorldService.class)
-public class DemoApplicationTests {
-
-  @Test
-  public void contextLoads() {
-
-  }
-
+@Repository
+public interface NameRepository extends CrudRepository<Name,String>{
 }

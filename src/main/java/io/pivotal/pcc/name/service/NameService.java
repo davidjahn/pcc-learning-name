@@ -14,34 +14,21 @@
  * the specific language governing permissions and limitations under the License.
  */
 
-package io.pivotal.pcc.name.config;
+package io.pivotal.pcc.name.service;
 
-import io.pivotal.pcc.example.demo.service.HelloWorldService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
 
-@RestController
-public class BackEndController {
+@Service
+public class NameService {
 
-  private static Logger logger = LogManager.getLogger(BackEndController.class);
+  private static Logger logger = LogManager.getLogger(NameService.class);
 
-  private final HelloWorldService helloWorldService;
-
-  @Autowired
-  public BackEndController(
-      HelloWorldService helloWorldService) {
-    this.helloWorldService = helloWorldService;
+  @Cacheable("HelloWorld")
+  public String sayHelloWorld(String helloString){
+    logger.info("************Hitting the service");
+    return String.valueOf(System.nanoTime());
   }
-
-  @CrossOrigin
-  @RequestMapping("/v0/users")
-  public String sayHello(){
-    logger.info("**Received request**");
-    return "{}";
-  }
-
 }

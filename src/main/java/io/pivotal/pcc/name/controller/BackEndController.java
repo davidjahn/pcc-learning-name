@@ -14,41 +14,28 @@
  * the specific language governing permissions and limitations under the License.
  */
 
-package io.pivotal.pcc.name.config;
+package io.pivotal.pcc.name.controller;
 
-import io.pivotal.pcc.example.demo.service.HelloWorldService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import io.pivotal.pcc.name.service.NameService;
 
-import javax.servlet.http.HttpSession;
+@RestController
+public class BackEndController {
 
-@Controller
-public class FrontEndController {
-
-  private static Logger logger = LogManager.getLogger(FrontEndController.class);
-
-  private final HelloWorldService helloWorldService;
+  private static Logger logger = LogManager.getLogger(BackEndController.class);
 
   @Autowired
-  public FrontEndController(
-      HelloWorldService helloWorldService) {
-    this.helloWorldService = helloWorldService;
-  }
+  private NameService nameService;
 
-  @GetMapping("/")
-  @CrossOrigin
-  public String ping(Model model, HttpSession httpSession){
-    if ((httpSession.getAttribute("name")) !=null || httpSession.getAttribute("message") != null){
-      model.addAttribute("username", "david");
-      return "userLoggedIn";
-    }
+  @RequestMapping("/v0/users")
+  public String sayHello(){
     logger.info("**Received request**");
-    return "userNotLoggedIn";
+    return "{}";
   }
 
 }

@@ -14,21 +14,34 @@
  * the specific language governing permissions and limitations under the License.
  */
 
-package io.pivotal.pcc.example.demo.service;
+package io.pivotal.pcc.name.model;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import javax.servlet.http.HttpSession;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.gemfire.mapping.annotation.Region;
 
-@Service
-public class HelloWorldService {
+@Region("Name")
+public class Name{
+    private String Name;
+    @Id
+    private String id;
+    private HttpSession session;
 
-  private static Logger logger = LogManager.getLogger(HelloWorldService.class);
+    public Name(String name, String id) {
+        Name = name;
+        this.id = id;
+    }
 
-  @Cacheable("HelloWorld")
-  public String sayHelloWorld(String helloString){
-    logger.info("************Hitting the service");
-    return String.valueOf(System.nanoTime());
-  }
+    public HttpSession getSession() {
+        return session;
+    }
+
+    public void setSession(HttpSession session) {
+        this.session = session;
+    }
+
 }

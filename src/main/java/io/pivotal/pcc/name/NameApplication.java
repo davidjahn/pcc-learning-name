@@ -30,10 +30,10 @@ import org.springframework.data.gemfire.config.annotation.EnableManager;
 
 /** This annotation is only used for "local" profile for dev testing **/
 @CacheServerApplication(name = "SampleApp")
-public class DemoApplication {
+public class NameApplication {
 
   public static void main(String[] args) {
-    SpringApplication.run(DemoApplication.class, args);
+    SpringApplication.run(NameApplication.class, args);
   }
 
 
