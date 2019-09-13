@@ -14,7 +14,7 @@
  * the specific language governing permissions and limitations under the License.
  */
 
-package io.pivotal.pcc.example.demo.config;
+package io.pivotal.pcc.name.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.gemfire.config.annotation.EnableCachingDefinedRegions;
